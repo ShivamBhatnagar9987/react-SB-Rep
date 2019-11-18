@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 class Counter extends Component {
-state={count:0  ,
+state={count:this.props.counter.value  ,
   imageUrl:"https://picsum.photos/200"
 };
 styles={
@@ -12,18 +12,12 @@ handleCount=()=>
 {
   this.setState({count:this.state.count+1});
 }
-resetCount=()=>
-{
-  this.setState({count:0});
-}
   render() {
     return (
       <div>
-      <button onClick={this.resetCount} className="btn btn-primary btn-sm">Reset</button>
-      <div>
       <span style={this.styles} className={this.getBadgeClasses()}>{this.formatCount()}</span>
       <button onClick={this.handleCount} className="btn btn-secondary btn-sm">Increment</button>
-      </div>
+	  <button onClick={()=>this.props.onDelete(this.props.counter.id)} className="btn btn-danger btn-sm m-2">Delete</button>
       </div>
     );
     }
